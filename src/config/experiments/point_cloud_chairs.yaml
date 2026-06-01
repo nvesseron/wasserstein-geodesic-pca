@@ -1,0 +1,50 @@
+# @package _global_
+# Paper point-cloud experiment on chair distributions.
+hydra:
+  sweeper:
+    params:
+
+      config.sampler_rho.name: gaussian
+      config.sampler_rho.dim: 3
+      config.sampler_nu_i.name: chair
+
+      config.architecture.neural_f.layers: [128, 128, 128, 128, 1]
+      config.architecture.neural_f.act_fn: "elu"
+      config.architecture.neural_f.optimizer.name: "adam"
+      config.architecture.neural_f.optimizer.scheduler.name: constant_schedule
+      config.architecture.neural_f.optimizer.scheduler.options.value: 5e-4
+      config.architecture.neural_f.optimizer.b1: 0.9
+      config.architecture.neural_f.optimizer.b2: 0.999
+
+      config.architecture.neural_psi.layers: [128, 128, 128, 128]
+      config.architecture.neural_psi.act_fn: "relu"
+      config.architecture.neural_psi.optimizer.name: "adam"
+      config.architecture.neural_psi.optimizer.scheduler.name: constant_schedule
+      config.architecture.neural_psi.optimizer.scheduler.options.value: 5e-4
+      config.architecture.neural_psi.optimizer.b1: 0.9
+      config.architecture.neural_psi.optimizer.b2: 0.999
+
+      config.t_i.optimizer.name: "adam"
+      config.t_i.optimizer.scheduler.name: constant_schedule
+      config.t_i.optimizer.scheduler.options.value: 5e-3
+      config.t_i.optimizer.b1: 0.9
+      config.t_i.optimizer.b2: 0.999
+
+      config.training_hyper.seed: 0
+      config.training_hyper.epsilon_scaling: 0.1
+      config.training_hyper.num_iter: 120002
+      config.training_hyper.num_iter_second_comp: 200000
+      config.training_hyper.batch_size: 1024
+      config.training_hyper.stop_gradient_eigen_values: False
+      config.training_hyper.reg_intersect: 1.0
+      config.training_hyper.reg_ortho: 1.0
+
+      config.logging.epsilon_log: 0.01
+      config.logging.batch_size_log: 2048
+      config.logging.project: "Wasserstein pca"
+      config.logging.log_freq: 200
+      config.logging.log_loss_freq: 20000
+      config.logging.log_freq_images: 5000
+      config.logging.offline: True
+
+      config.saving.output_dir: ${oc.env:GPCAGEN_OUTPUT_DIR,NONE}

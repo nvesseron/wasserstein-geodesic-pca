@@ -1,0 +1,58 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+activate/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.whl
+
+# Experiment outputs
+wandb/
+outputs/
+multirun/
+.submitit/
+checkpoints/
+artifacts/
+
+# Data and large generated files
+data/
+datasets/
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.pkl
+*.pt
+*.pth
+*.ckpt
+*.msgpack
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+core-*
+core-python*

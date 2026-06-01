@@ -1,0 +1,68 @@
+config:
+    sampler_rho:
+        name: gaussian
+        dim: 4
+
+    sampler_nu_i:
+        name: mnist_geodesics
+
+
+    architecture:
+        neural_f:
+            layers: [64, 64, 64, 64, 1]
+            act_fn: "elu"
+            optimizer:
+                name: "adam"
+                scheduler:
+                    name: constant_schedule
+                    options:
+                        value: 1e-4
+                b1: 0.9
+                b2: 0.999
+
+        neural_psi:
+            layers: [64, 64, 64, 64]
+            act_fn: "relu"
+            optimizer:
+                name: "adam"
+                scheduler:
+                    name: constant_schedule
+                    options:
+                        value: 1e-4
+                b1: 0.9
+                b2: 0.999
+
+    t_i:
+        optimizer:
+            name: "adam"
+            scheduler:
+                name: constant_schedule
+                options:
+                    value: 1e-3
+            b1: 0.9
+            b2: 0.999
+
+  
+    training_hyper:
+        seed: 0
+        num_iter: 1001
+        num_iter_second_comp: 1002
+        batch_size: 1024
+        stop_gradient_eigen_values: False
+        epsilon_scaling: 0.1
+        reg_intersect: 1.0
+        reg_ortho: 1.0
+
+
+    logging:
+        epsilon_log: 0.01
+        batch_size_log: 2048
+        project: "Wasserstein pca"
+        log_freq: 100
+        log_loss_freq: 1000
+        log_freq_images: 10
+        offline: True
+    
+    saving:
+        output_dir: ${oc.env:GPCAGEN_OUTPUT_DIR,NONE}
+        output_dir_jz: ${oc.env:GPCAGEN_OUTPUT_DIR,NONE}
