@@ -6,12 +6,6 @@ of Probability Measures**.
 - OpenReview: <https://openreview.net/forum?id=OJupg4mDjS>
 - arXiv: <https://arxiv.org/abs/2506.04480>
 
-## Environment
-
-This repository intentionally does not commit a `pyproject.toml`, lockfile, or
-virtual environment. Create and check the Python/JAX environment separately
-before running the experiments.
-
 ## Main Jean Zay Command
 
 After activating your environment, the main public example is:
